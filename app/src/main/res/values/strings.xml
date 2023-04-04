@@ -3,4 +3,7 @@
     <string name="thinking_img">Thinking img</string>
     <string name="i_m_thinking_of_a_number_between_1_and_20">I\'m thinking of a number between 1 and 20</string>
     <string name="can_you_guess_it">Can you guess it?</string>
+    <string name="guess_the_number">Guess the number!</string>
+    <string name="button">Button</string>
+    <string name="btnGuess">Guess</string>
 </resources>
