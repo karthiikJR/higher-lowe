@@ -1,7 +1,10 @@
 package com.example.higher_lower;
 
+import static com.example.higher_lower.R.id.btnRetry;
+
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,29 +26,19 @@ import nl.dionsegijn.konfetti.xml.KonfettiView;
 
 public class MainActivity extends AppCompatActivity {
 
+    // declare the views
+    private EditText etUsrInp;
+    private Button btnRetry;
+    private KonfettiView kv;
 
-
-    //Shape.DrawableShape ds = new Shape.DrawableShape(AppCompatResources.getDrawable(this,R.drawable.baseline_polyline_24),true);
-
-
-//    public void explode() {
-//        EmitterConfig emitterConfig = new Emitter(100L, TimeUnit.MILLISECONDS).max(100);
-//        kv.start(
-//                new PartyFactory(emitterConfig)
-//                        .spread(360)
-//                        .shapes(Arrays.asList(Shape.Square.INSTANCE, Shape.Circle.INSTANCE, ds))
-//                        .colors(Arrays.asList(0xfce18a, 0xff726d, 0xf4306d, 0xb48def))
-//                        .setSpeedBetween(0f, 30f)
-//                        .position(new Position.Relative(0.5, 0.3))
-//                        .build()
-//        );
-//    }
-
+    // declare other variables and objects
     Random r = new Random();
     int random = r.nextInt(20);
     int noOfTimesClicked = 0;
+
     public void onBtnClick(View view) {
 
+        Log.d("Random Number:",String.valueOf(random));
         noOfTimesClicked++;
 
         EditText tv = (EditText) findViewById(R.id.etUsrInp);
@@ -61,15 +54,7 @@ public class MainActivity extends AppCompatActivity {
         else {
             Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
 
-        }
-    }
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button btn = findViewById(R.id.button4);
-        btn.setOnClickListener(v -> {
-            KonfettiView kv = findViewById(R.id.konfettiView);
+
             EmitterConfig emitterConfig = new Emitter(100L, TimeUnit.MILLISECONDS).max(100);
             kv.start(
                     new PartyFactory(emitterConfig)
@@ -80,9 +65,21 @@ public class MainActivity extends AppCompatActivity {
                             .position(new Position.Relative(0.5, 0.3))
                             .build()
             );
-        });
 
+        }
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // initialize the views
+        etUsrInp = findViewById(R.id.etUsrInp);
+        //btnRetry = findViewById(R.id.btnRetry);
+        kv = findViewById(R.id.konfettiView);
+
+        // your other code here
+    }
 
 }
