@@ -21,6 +21,7 @@
         android:id="@+id/imageView"
         android:layout_width="329dp"
         android:layout_height="387dp"
+        android:layout_marginTop="48dp"
         android:alpha="0.75"
         android:contentDescription="@string/thinking_img"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +43,7 @@
         android:id="@+id/etUsrInp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:autofillHints=""
         android:ems="10"
         android:gravity="center"
@@ -66,14 +67,5 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUsrInp" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="@+id/konfettiView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
