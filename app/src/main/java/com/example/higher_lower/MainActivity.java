@@ -1,15 +1,26 @@
 package com.example.higher_lower;
 
 import static com.example.higher_lower.R.id.btnRetry;
+import static com.example.higher_lower.R.id.tvCompletedTypeUser;
 
+import static java.security.AccessController.getContext;
+
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 
@@ -31,10 +42,26 @@ public class MainActivity extends AppCompatActivity {
     private Button btnRetry;
     private KonfettiView kv;
 
+
     // declare other variables and objects
     Random r = new Random();
     int random = r.nextInt(20);
     int noOfTimesClicked = 0;
+    View customDialogView ;
+    //customDialogView = getLayoutInflater().inflate(R.layout.custom_dia, null);
+
+    public class CustomDialog extends Dialog {
+        public CustomDialog(@NonNull Context context) {
+            super(context);
+        }
+    }
+
+    public void restartActi(View view) {
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+    }
+
 
     public void onBtnClick(View view) {
 
@@ -52,7 +79,25 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Lower!", Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
+            //TextView tvCompletedTypeUser = customDialogView.findViewById(R.id.tvCompletedTypeUser);
+            //Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
+//            Dialog dialog = new Dialog(MainActivity.this);
+//            dialog.setContentView(customDialogView);
+//            dialog.show();
+
+            // create an instance of the custom dialog class
+            CustomDialog dialog = new CustomDialog(MainActivity.this);
+            dialog.setContentView(R.layout.custom_dia);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setGravity(Gravity.CENTER);
+            dialog.show();
+
+
+            Log.d("CustomDialog", "setContentView returned: " + dialog.getWindow().getDecorView().getRootView());
+
+
+
 
 
             EmitterConfig emitterConfig = new Emitter(100L, TimeUnit.MILLISECONDS).max(100);
@@ -76,10 +121,15 @@ public class MainActivity extends AppCompatActivity {
 
         // initialize the views
         etUsrInp = findViewById(R.id.etUsrInp);
-        //btnRetry = findViewById(R.id.btnRetry);
+        //btnRetry = customDialogView.findViewById(R.id.btnRetry);
         kv = findViewById(R.id.konfettiView);
+        //getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+
+
 
         // your other code here
     }
 
 }
+
